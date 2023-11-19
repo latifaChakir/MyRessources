@@ -65,7 +65,13 @@ BEGIN
 END //
 DELIMITER ;
 
--- CALL CreateUser('hajar', 'hajar@gmail.com',1)
+CALL CreateUser('hajar', 'hajar@gmail.com',1);
+CALL CreateUser('latifa', 'latifa@gmail.com',1);
+CALL CreateUser('hiba', 'hiba@gmail.com',1);
+CALL CreateUser('assma', 'assma@gmail.com',2);
+CALL CreateUser('chaima', 'chaima@gmail.com',2);
+CALL CreateUser('ezzahra', 'ezzahra@gmail.com',2);
+
 
 -----------project
 DELIMITER //
@@ -81,8 +87,9 @@ BEGIN
 END //
 DELIMITER;
 
--- CALL CreateProject('MyRessources', 'realiser le projet','2023-02-12','2023-02-30')
-
+CALL CreateProject('MyRessources', 'realiser le projet','2023-02-12','2023-02-18');
+CALL CreateProject('ScrumBoard', 'realiser le projet','2023-02-12','2023-02-18');
+CALL CreateProject('MySport', 'realiser ton projet ','2023-02-12','2023-02-18');
 -------squad
 DELIMITER //
 create PROCEDURE CreateSquad (
@@ -94,7 +101,10 @@ BEGIN
    VALUES(s_name,s_projet_id);
 END //
 DELIMITER;
--- CALL CreateSquad('codezilla',1)
+CALL CreateSquad('codezilla',1);
+CALL CreateSquad('dev',1);
+CALL CreateSquad('codezilla',2);
+CALL CreateSquad('dev',2);
 
 ------categie 
 DELIMITER //
@@ -108,7 +118,9 @@ END //
 DELIMITER ;
 
 
--- CALL CreateCategorie('ecommerce')
+CALL CreateCategorie('ecommerce');
+CALL CreateCategorie('sport');
+CALL CreateCategorie('nourriture');
 
 ------subcategorie
 DELIMITER //
@@ -122,7 +134,9 @@ BEGIN
 END //
 DELIMITER;
 
--- CALL createSubCategory('vetemets',1)
+CALL createSubCategory('vetemets',1);
+CALL createSubCategory('shoes',1);
+CALL createSubCategory('lait',1);
 
 -----ressources
 DELIMITER //
@@ -139,7 +153,9 @@ BEGIN
 END //
 DELIMITER;
 
---call CreateRessources(2,2,1,1,'W3Schools')
+call CreateRessources(1,2,2,2,'W3Schools');
+call CreateRessources(1,1,2,3,'sololearn');
+call CreateRessources(2,2,1,1,'udemy');
 
 ---------select the project
 
@@ -157,7 +173,7 @@ END //
 
 DELIMITER ;
 
---call selectProject('codezilla')
+call selectProject('codezilla')
 
 ---mettre à jour les details d'utilisateur
 DELIMITER //
@@ -174,7 +190,7 @@ BEGIN
 END //
 
 DELIMITER ;
---call updateUser(4,'kawtar','kawtar@gmail.com',1)
+call updateUser(4,'kawtar','kawtar@gmail.com',1)
 
 --mettre à jour les details du squad 
 DELIMITER //
@@ -191,7 +207,7 @@ BEGIN
 END //
 
 DELIMITER ;
---call updateSquad(1,'dev',1)
+call updateSquad(1,'dev',1)
 
 --mettre à jour les details du projet
 DELIMITER //
@@ -210,7 +226,7 @@ END //
 
 DELIMITER ;
 
---call updateProject(3,'Amazon','realiser interface utilisateur','2023-06-12','2023-06-18')
+call updateProject(3,'Amazon','realiser interface utilisateur','2023-06-12','2023-06-18')
 
 
 --mettre à jour les details du projet
@@ -232,4 +248,4 @@ END //
 
 DELIMITER ;
  
---call updateRessources(1,1,1,2,2,'WayToLearnX')
+call updateRessources(1,1,1,2,2,'WayToLearnX')
