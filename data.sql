@@ -1,4 +1,5 @@
 CREATE database IF NOT EXISTS brief1_sql;
+
 -----------la création des tableaux
 CREATE table project (
     projet_id int primary key AUTO_INCREMENT,
@@ -21,6 +22,7 @@ CREATE TABLE Utilisateur (
     nom VARCHAR(50) NOT NULL,
     email VARCHAR(255) NOT NULL,
     squad_id int,
+    role_utilisateur VARCHAR(255) NOT NULL,
     foreign key (squad_id) references squad(squad_id),
 );
 
@@ -57,20 +59,21 @@ DELIMITER //
 CREATE PROCEDURE CreateUser (
     p_nom VARCHAR(50),
     p_email VARCHAR(100),
-    p_squad_id int
+    p_squad_id int,
+    p_role_user VARCHAR(100)
 )
 BEGIN
-    INSERT INTO Utilisateur (nom, email,squad_id)
-    VALUES (p_nom, p_email,p_squad_id);
+    INSERT INTO Utilisateur (nom, email,squad_id,role_utilisateur)
+    VALUES (p_nom, p_email,p_squad_id,p_role_user);
 END //
 DELIMITER ;
 
-CALL CreateUser('hajar', 'hajar@gmail.com',1);
-CALL CreateUser('latifa', 'latifa@gmail.com',1);
-CALL CreateUser('hiba', 'hiba@gmail.com',1);
-CALL CreateUser('assma', 'assma@gmail.com',2);
-CALL CreateUser('chaima', 'chaima@gmail.com',2);
-CALL CreateUser('ezzahra', 'ezzahra@gmail.com',2);
+CALL CreateUser('hajar', 'hajar@gmail.com',1,'leader');
+CALL CreateUser('latifa', 'latifa@gmail.com',1,'membre');
+CALL CreateUser('hiba', 'hiba@gmail.com',1,'membre');
+CALL CreateUser('assma', 'assma@gmail.com',2,'membre');
+CALL CreateUser('chaima', 'chaima@gmail.com',2,'membre');
+CALL CreateUser('ezzahra', 'ezzahra@gmail.com',2,'membre');
 
 
 -----------project
@@ -182,15 +185,16 @@ CREATE PROCEDURE updateUser (
     IN update_user_id INT,
     IN update_user_nom VARCHAR(255),
     IN update_user_email VARCHAR(255),
-    IN update_user_sqaud_id INT
+    IN update_user_sqaud_id INT,
+    IN update_user_role VARCHAR(255)
 )
 BEGIN 
-    UPDATE Utilisateur SET nom = update_user_nom, email = update_user_email, squad_id=update_user_sqaud_id
+    UPDATE Utilisateur SET nom = update_user_nom, email = update_user_email, squad_id=update_user_sqaud_id, role_utilisateur =update_user_role
     WHERE user_id = update_user_id;
 END //
 
 DELIMITER ;
-call updateUser(4,'kawtar','kawtar@gmail.com',1)
+call updateUser(4,'meryam','meryam@gmail.com',1,'membre')
 
 --mettre à jour les details du squad 
 DELIMITER //
